@@ -1,31 +1,31 @@
 ---
 import ProductFrame from './ProductFrame.astro';
-import { appLink } from '../lib/links';
+import { cta } from '../lib/links';
 ---
 
 <section class="hero">
   <div class="container">
     <span class="eyebrow e" style="--d: 0.05s">
-      <i></i>Cloud call center software
+      <i></i>Now piloting in Rwanda
     </span>
 
     <h1>
       <span class="e" style="--d: 0.12s">
-        Phone work,
+        Your whole phone team,
       </span>
       <span class="e soft" style="--d: 0.22s">
-        made calm.
+        on one calm screen.
       </span>
     </h1>
 
     <p class="lede e" style="--d: 0.34s">
-      Slide runs in the browser. Agents take calls, supervisors watch the whole floor, and managers
-      get numbers they can trust.
+      Agents answer with the customer's history in front of them. Supervisors see every queue as it
+      moves. Managers get numbers they can trust.
     </p>
 
     <div class="cta e" style="--d: 0.44s">
-      <a class="btn btn-primary" href={appLink('/sign-up')}>
-        Start free
+      <a class="btn btn-primary" href={cta.href}>
+        {cta.label}
         <svg
           viewBox="0 0 16 16"
           fill="none"
@@ -43,7 +43,7 @@ import { appLink } from '../lib/links';
       </a>
     </div>
     <p class="note e" style="--d: 0.52s">
-      Try it free. No card needed.
+      Tell us about your team and we'll be in touch.
     </p>
 
     <ProductFrame />
@@ -90,7 +90,7 @@ import { appLink } from '../lib/links';
 
   h1 {
     margin: 28px auto 0;
-    max-width: 14ch;
+    max-width: 20ch;
     font-weight: 620;
     font-size: var(--text-hero);
     line-height: 0.96;

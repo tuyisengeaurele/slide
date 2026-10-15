@@ -1,0 +1,122 @@
+---
+import { cta } from '../lib/links';
+
+// The four kinds of team we're starting with in Rwanda. What Slide is for, not who already uses it.
+const cases = [
+  {
+    team: 'Banks and microfinance',
+    line: 'Customer care and collections lines.',
+    body: 'Slide logs each call and keeps each promise on record, so nobody relies on memory.',
+  },
+  {
+    team: 'Telecom and utilities',
+    line: 'High-volume support lines.',
+    body: 'See a surge while it builds and send callers to the queue that can take them.',
+  },
+  {
+    team: 'Health and insurance',
+    line: 'Appointment, claims and patient lines.',
+    body: 'Sensitive calls, recorded only with consent, with a clear trail behind each one.',
+  },
+  {
+    team: 'Outsourced call centers',
+    line: 'Answering for several clients.',
+    body: "Keep each client's queues, numbers and reports apart, so you can show each one their own results.",
+  },
+];
+---
+
+<section class="cases section" id="built-for">
+  <div class="container">
+    <header class="head reveal">
+      <p class="kicker">Built for</p>
+      <h2 class="h2">
+        Teams where the phone <span class="soft">is the front door.</span>
+      </h2>
+    </header>
+
+    <ul class="grid">
+      {cases.map((c, i) => (
+        <li class="reveal" style={`--i: ${i % 2}`}>
+          <p class="team">{c.team}</p>
+          <h3>{c.line}</h3>
+          <p>{c.body}</p>
+        </li>
+      ))}
+    </ul>
+
+    <p class="elsewhere reveal">
+      Not on the list? Slide is for any team that answers customers by phone.
+      <a href={cta.href}>Tell us about yours.</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .head .h2 {
+    margin-top: 16px;
+    max-width: 19ch;
+  }
+  .grid {
+    list-style: none;
+    margin: clamp(36px, 5vw, 64px) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  li {
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    transition:
+      transform var(--dur-base) var(--ease-out),
+      border-color var(--dur-base);
+  }
+  li:hover {
+    transform: translateY(-3px);
+    border-color: var(--line-strong);
+  }
+  .team {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  h3 {
+    margin-top: 14px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+  li p:last-child {
+    margin-top: 12px;
+    max-width: 40ch;
+    color: var(--ink-2);
+  }
+  .elsewhere {
+    margin-top: 28px;
+    color: var(--ink-2);
+  }
+  .elsewhere a {
+    color: var(--ink);
+    font-weight: 560;
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+    text-underline-offset: 4px;
+  }
+  .elsewhere a:hover {
+    text-decoration-color: var(--orange);
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    li {
+      padding: 24px;
+    }
+  }
+</style>

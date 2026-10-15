@@ -1,0 +1,117 @@
+---
+import { cta } from '../lib/links';
+
+// Not customers, so no logos. This says where we are and who we're starting with.
+const teams = [
+  'Banks and microfinance',
+  'Telecom and utilities',
+  'Health and insurance',
+  'Outsourced call centers',
+];
+---
+
+<section class="pilot" aria-labelledby="pilot-h">
+  <div class="container wrap">
+    <div class="lead reveal">
+      <p class="kicker">Where we are</p>
+      <h2 id="pilot-h">
+        Piloting in Rwanda now. <span class="soft">More countries next.</span>
+      </h2>
+    </div>
+
+    <div class="body reveal" style="--i: 1">
+      <p>
+        We're starting in Rwanda, with phone teams in these fields. If that's you, we'd like to hear
+        how your calls work today.
+      </p>
+      <ul>
+        {teams.map((t) => (
+          <li>{t}</li>
+        ))}
+      </ul>
+      <a class="more" href={cta.href}>
+        Join the pilot
+        <svg
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M3 8h10M9 4l4 4-4 4"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pilot {
+    padding-block: clamp(32px, 5vw, 64px);
+    border-block: 1px solid var(--line);
+    background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  }
+  .wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(24px, 5vw, 80px);
+    align-items: center;
+  }
+  h2 {
+    margin-top: 12px;
+    max-width: 16ch;
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+  h2 .soft {
+    color: var(--ink-3);
+  }
+  .body > p {
+    max-width: 38rem;
+    color: var(--ink-2);
+  }
+  ul {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  li {
+    padding: 7px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+  .more {
+    margin-top: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 560;
+    color: var(--ink);
+  }
+  .more svg {
+    width: 16px;
+    height: 16px;
+    color: var(--orange);
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .more:hover svg {
+    transform: translateX(3px);
+  }
+  @media (max-width: 860px) {
+    .wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -3,7 +3,7 @@ import RouteScene from './scenes/RouteScene.astro';
 import ContextScene from './scenes/ContextScene.astro';
 import WrapScene from './scenes/WrapScene.astro';
 
-// "A call, from ring to resolved". Three steps, one sticky picture on desktop.
+// "One call, from ring to resolved". Three steps, one sticky picture on desktop.
 // Without JS (or on small screens) every step just carries its own picture.
 const steps = [
   {
@@ -13,13 +13,13 @@ const steps = [
   },
   {
     n: '02',
-    title: 'The agent already knows who is calling.',
-    body: 'History, open tickets and the last few notes are on screen before anyone says hello.',
+    title: 'The agent knows who is calling.',
+    body: "History, open issues and the last notes are on screen before anyone says hello. Customers don't have to explain themselves twice.",
   },
   {
     n: '03',
-    title: "It's done when the call is done.",
-    body: 'Notes, outcome and the recording save themselves, so wrap-up takes a few seconds instead of a few minutes.',
+    title: "It's finished when the call is.",
+    body: 'Notes, outcome and the recording save themselves. Wrap-up takes seconds, and the next call can come through.',
   },
 ];
 ---
@@ -27,9 +27,9 @@ const steps = [
 <section class="story section" id="story" data-story>
   <div class="container">
     <header class="head reveal">
-      <p class="kicker">One call, start to finish</p>
+      <p class="kicker">Follow a call</p>
       <h2 class="h2">
-        A call, from ring <span class="soft">to resolved.</span>
+        One call, from ring <span class="soft">to resolved.</span>
       </h2>
     </header>
 

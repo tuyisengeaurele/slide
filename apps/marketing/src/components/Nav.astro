@@ -1,6 +1,6 @@
 ---
 import logo from '@slide/ui/brand/slide-logo.svg?url';
-import { appLink, nav } from '../lib/links';
+import { appLink, cta, hasApp, nav } from '../lib/links';
 
 const current = Astro.url.pathname.replace(/\/$/, '');
 ---
@@ -32,11 +32,14 @@ const current = Astro.url.pathname.replace(/\/$/, '');
           <path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"></path>
         </svg>
       </button>
-      <a class="signin" href={appLink('/sign-in')}>
-        Sign in
-      </a>
-      <a class="btn btn-primary btn-sm" href={appLink('/sign-up')}>
-        Start free
+      {hasApp && (
+        <a class="signin" href={appLink('/sign-in')}>
+          Sign in
+        </a>
+      )}
+      <a class="btn btn-primary btn-sm" href={cta.href}>
+        <span class="long">{cta.label}</span>
+        <span class="short">{cta.short}</span>
       </a>
 
       <details class="menu">
@@ -56,7 +59,7 @@ const current = Astro.url.pathname.replace(/\/$/, '');
           {nav.map((item) => (
             <a href={item.href}>{item.label}</a>
           ))}
-          <a href={appLink('/sign-in')}>Sign in</a>
+          {hasApp && <a href={appLink('/sign-in')}>Sign in</a>}
         </div>
       </details>
     </div>
@@ -78,9 +81,15 @@ const current = Astro.url.pathname.replace(/\/$/, '');
     gap: 32px;
     height: 68px;
   }
+  .brand {
+    flex: none;
+  }
   .brand img {
     height: 28px;
     width: auto;
+  }
+  .short {
+    display: none;
   }
   .links {
     display: flex;
@@ -177,6 +186,14 @@ const current = Astro.url.pathname.replace(/\/$/, '');
     background: color-mix(in srgb, var(--ink) 6%, transparent);
   }
 
+  @media (max-width: 520px) {
+    .long {
+      display: none;
+    }
+    .short {
+      display: inline;
+    }
+  }
   @media (max-width: 900px) {
     .links,
     .signin {

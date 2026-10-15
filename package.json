@@ -9,13 +9,13 @@
   },
   "scripts": {
     "dev": "pnpm -r --parallel --filter \"./apps/*\" dev",
-    "build": "pnpm -r build",
-    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm -r --if-present build",
+    "typecheck": "pnpm -r --if-present typecheck",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "pnpm -r test",
-    "e2e": "pnpm -r e2e",
+    "test": "pnpm -r --if-present test",
+    "e2e": "pnpm -r --if-present e2e",
     "prepare": "lefthook install"
   },
   "devDependencies": {

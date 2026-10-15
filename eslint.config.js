@@ -25,6 +25,8 @@ export default tseslint.config(
     rules: {
       ...react.configs.recommended.rules,
       ...jsxA11y.flatConfigs.recommended.rules,
+      // scrollable regions have to be focusable or keyboard users can't scroll them
+      'jsx-a11y/no-noninteractive-tabindex': ['error', { roles: ['tabpanel', 'region'] }],
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],

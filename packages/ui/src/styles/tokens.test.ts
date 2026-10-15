@@ -61,6 +61,11 @@ describe.each(Object.entries(themes))('%s theme contrast', (_name, all) => {
     expect(ratio('ink-3', 'vanilla')).toBeGreaterThanOrEqual(4.5);
   });
 
+  it('error text is readable on the page and on surfaces', () => {
+    expect(ratio('err', 'bg')).toBeGreaterThanOrEqual(4.5);
+    expect(ratio('err', 'surface')).toBeGreaterThanOrEqual(4.5);
+  });
+
   it('text on the orange button is at least AA', () => {
     expect(ratio('orange-ink', 'orange')).toBeGreaterThanOrEqual(4.5);
   });

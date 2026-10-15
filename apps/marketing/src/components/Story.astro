@@ -82,11 +82,21 @@ const steps = [
     gap: 64px;
   }
   .num {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--font-mono);
     font-size: 0.8125rem;
-    color: var(--orange);
+    color: var(--ink-2);
     font-weight: 600;
     letter-spacing: 0.04em;
+  }
+  .num::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
   }
   .step h3 {
     margin-top: 12px;
@@ -124,11 +134,13 @@ const steps = [
       display: flex;
       flex-direction: column;
       justify-content: center;
-      opacity: 0.38;
-      transition: opacity var(--dur-slow) var(--ease-out);
     }
-    [data-story][data-enhanced] .step.on {
-      opacity: 1;
+    /* steps you've scrolled past or not reached yet go quiet, using real colors so they stay readable */
+    [data-story][data-enhanced] .step :is(h3, p, .num) {
+      transition: color var(--dur-slow) var(--ease-out);
+    }
+    [data-story][data-enhanced] .step:not(.on) :is(h3, p, .num) {
+      color: var(--ink-3);
     }
     [data-story][data-enhanced] .inline-scene {
       display: none;

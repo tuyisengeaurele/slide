@@ -53,6 +53,8 @@ importers:
 
   packages/shared: {}
 
+  packages/ui: {}
+
 packages:
 
   '@astrojs/compiler-binding-android-arm64@0.4.1':

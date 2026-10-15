@@ -10,11 +10,11 @@ const blocks = [
   {
     id: 'agents',
     kicker: 'For agents',
-    title: 'A workspace that stays out of the way.',
-    body: 'The softphone, the caller and their history sit on one screen. Answer, hold, transfer and wrap up without hunting through tabs.',
+    title: 'Answer like you already know them.',
+    body: 'The caller, their history and your notes sit on one screen. Answer, hold, transfer and wrap up without hunting for anything.',
     points: [
-      'Softphone in the browser, headset in, no install',
-      'Caller history and open tickets shown as the call rings',
+      'History and open issues show up as the call rings',
+      'Hold, mute and transfer without leaving the call screen',
       'Notes and outcome saved in one step',
     ],
     scene: 'context',
@@ -23,7 +23,7 @@ const blocks = [
     id: 'routing',
     kicker: 'Routing',
     title: 'Send every call to the right person.',
-    body: 'Build the path a call takes: opening hours, language, skill, priority, overflow. You can read the whole thing before it goes live.',
+    body: 'Build the path a call takes: opening hours, skill, priority and overflow. You can read the whole flow before it goes live.',
     points: [
       'Opening hours and holiday schedules',
       'Skills and priority per queue',
@@ -33,13 +33,13 @@ const blocks = [
   },
   {
     id: 'supervisors',
-    kicker: 'For supervisors',
+    kicker: 'For supervisors and managers',
     title: 'Know how the day is going, while it is going.',
-    body: 'Live queues and agent status on one board. See who is waiting, who is free, and where a queue is starting to back up.',
+    body: 'Live queues and agent status on one board. Afterwards, every call is in the history with its recording, so there is always something to check.',
     points: [
-      'Live wall of queues and waiting callers',
-      'Agent status at a glance',
-      'Call history with recordings, searchable',
+      'A live board of every queue and waiting caller',
+      'Agent status at a glance: free, on a call, wrapping up',
+      'Searchable call history, with recordings and outcomes',
     ],
     scene: 'wrap',
   },
@@ -48,13 +48,13 @@ const blocks = [
 
 <Base
   title="Features"
-  description="Browser softphone, routing, live queues, recording and reporting. What Slide does and who it is for."
+  description="Call history on screen, routing, live queues, recording with consent and reports. What Slide does for agents, supervisors and managers."
 >
   <PageHero
     kicker="Features"
-    title="Built for the people"
-    soft="on the phone."
-    lede="One place to take calls, route them, watch the floor and learn from the numbers."
+    title="Built for the whole"
+    soft="phone team."
+    lede="Agents, supervisors and managers each get what they need, in one place."
   />
 
   {blocks.map((b, i) => (

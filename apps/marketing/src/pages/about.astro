@@ -6,29 +6,50 @@ import FinalCta from '../components/FinalCta.astro';
 const principles = [
   {
     t: 'Calm over clever',
-    b: 'A phone shift is stressful enough. The interface should lower the temperature, not add buttons.',
+    b: 'A phone shift is stressful enough. The screen should lower the temperature, not add buttons.',
   },
   {
     t: 'Plain words',
-    b: 'No jargon on the screen and none on this site. If a setting needs a paragraph to explain, we redesign the setting.',
+    b: 'No jargon in the product and none on this site. If a setting needs a paragraph to explain it, we redesign the setting.',
   },
   {
-    t: 'Fast, always',
-    b: "Pages load quickly and clicks answer immediately. When you're on a live call, a spinner is a failure.",
+    t: 'Built with the people who use it',
+    b: 'We start in Rwanda because that is where we can sit with phone teams and watch how calls really go.',
   },
   {
     t: 'Honest about where we are',
-    b: "Slide is early. We would rather tell you what's built and what isn't than promise the whole map.",
+    b: "Slide is early. We'd rather tell you what is built and what isn't than promise the whole map.",
+  },
+];
+
+const stages = [
+  {
+    when: 'Now',
+    what: 'Piloting in Rwanda',
+    note: 'Working with phone teams to get the basics right.',
+  },
+  {
+    when: 'Next',
+    what: 'More teams, more countries',
+    note: 'Taking what we learn to the next market.',
+  },
+  {
+    when: 'Then',
+    what: 'Everywhere calls are answered',
+    note: 'One product that fits how each market works.',
   },
 ];
 ---
 
-<Base title="About" description="Why Slide exists and what we care about while building it.">
+<Base
+  title="About"
+  description="Why Slide exists: call center software that starts in Rwanda and is built for teams everywhere."
+>
   <PageHero
     kicker="About"
-    title="Call center software,"
-    soft="without the noise."
-    lede="Slide is being built for the people who answer the phone for a living, and for the people who run those teams."
+    title="Starting in Rwanda,"
+    soft="built for everywhere."
+    lede="Slide is for the people who answer the phone for a living, and the people who run those teams, wherever they are."
   />
 
   <section class="section">
@@ -36,12 +57,18 @@ const principles = [
       <div class="story reveal">
         <h2 class="h2">Why we're building it</h2>
         <p>
-          Most call center tools were designed around the admin who buys them, not the agent who
-          spends eight hours inside them. They're heavy, slow and full of screens nobody asked for.
+          For a lot of businesses, the phone is still how customers reach them. Much of the software
+          that runs a phone team was designed for big companies in other markets: expensive, slow to
+          set up, and built around problems that are not always yours.
         </p>
         <p>
-          We think phone work can feel calmer and more human. That starts with software that loads
-          fast, shows you who's calling, and gets out of the way.
+          We think phone work can be calmer. That starts with software that shows you who is
+          calling, lets a supervisor see the whole floor, and stays out of the agent's way.
+        </p>
+        <p>
+          We are starting in Rwanda, with teams in banking and microfinance, telecom and utilities,
+          health and insurance, and outsourced call centers. Then we take what we learn to the next
+          market.
         </p>
       </div>
 
@@ -53,6 +80,23 @@ const principles = [
           </li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <section class="section path" aria-labelledby="path-h">
+    <div class="container">
+      <h2 class="h2 reveal" id="path-h">
+        Where we're headed
+      </h2>
+      <ol class="stages">
+        {stages.map((s, i) => (
+          <li class="reveal" style={`--i: ${i}`}>
+            <span class="when">{s.when}</span>
+            <h3>{s.what}</h3>
+            <p>{s.note}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -71,7 +115,7 @@ const principles = [
   }
   .story p {
     margin-top: 20px;
-    max-width: 40ch;
+    max-width: 42ch;
     color: var(--ink-2);
     font-size: 1.0625rem;
   }
@@ -101,9 +145,53 @@ const principles = [
     color: var(--ink-2);
     font-size: 0.9375rem;
   }
+
+  .path {
+    padding-top: 0;
+  }
+  .stages {
+    list-style: none;
+    margin: 32px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .stages li {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .stages li:first-child {
+    background: var(--orange-soft);
+    border-color: color-mix(in srgb, var(--orange) 40%, transparent);
+  }
+  .when {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .stages h3 {
+    margin-top: 28px;
+    font-size: 1.375rem;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+  .stages p {
+    margin-top: 10px;
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
   @media (max-width: 860px) {
-    .split {
+    .split,
+    .stages {
       grid-template-columns: 1fr;
+    }
+    .stages h3 {
+      margin-top: 16px;
     }
   }
 </style>

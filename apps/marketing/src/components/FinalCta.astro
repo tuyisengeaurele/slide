@@ -1,0 +1,67 @@
+---
+import icon from '@slide/ui/brand/slide-icon.svg?url';
+import { appLink } from '../lib/links';
+---
+
+<section class="cta section">
+  <div class="container">
+    <div class="panel reveal">
+      <img src={icon} alt="" width="56" height="66" />
+      <h2 class="h2">
+        Pick up the phone. <span class="soft">We'll handle the rest.</span>
+      </h2>
+      <p class="lede">Set up a team, point a number at it, and take a call today.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href={appLink('/sign-up')}>
+          Start free
+          <svg
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 8h10M9 4l4 4-4 4"></path>
+          </svg>
+        </a>
+        <a class="btn btn-ghost" href="/contact">
+          Talk to us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .panel {
+    position: relative;
+    overflow: clip;
+    padding: clamp(56px, 9vw, 120px) clamp(24px, 6vw, 80px);
+    border-radius: 28px;
+    text-align: center;
+    background: radial-gradient(60% 80% at 50% 0%, var(--glow), transparent 70%), var(--vanilla);
+    border: 1px solid var(--line);
+  }
+  .panel img {
+    width: 56px;
+    height: auto;
+    margin: 0 auto 28px;
+  }
+  .h2 {
+    max-width: 16ch;
+    margin-inline: auto;
+  }
+  .lede {
+    margin: 24px auto 0;
+    max-width: 30rem;
+  }
+  .actions {
+    margin-top: 36px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

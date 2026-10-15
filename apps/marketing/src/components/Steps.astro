@@ -1,0 +1,107 @@
+---
+const steps = [
+  {
+    n: '1',
+    title: 'Connect your numbers',
+    body: 'Bring the numbers you already use or pick new ones. Point them at Slide and you are done with the phone side.',
+  },
+  {
+    n: '2',
+    title: 'Shape the routing',
+    body: 'Decide who answers what, and when. Drag the steps into order and read the whole flow before you save it.',
+  },
+  {
+    n: '3',
+    title: 'Take the first call',
+    body: 'Invite the team, open the workspace, answer. Supervisors can already see the floor.',
+  },
+];
+---
+
+<section class="how section" id="how-it-works">
+  <div class="container">
+    <header class="head reveal">
+      <p class="kicker">Getting started</p>
+      <h2 class="h2">
+        Up and answering <span class="soft">in three steps.</span>
+      </h2>
+    </header>
+
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="reveal" style={`--i: ${i}`}>
+          <span class="n">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p>{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .head .h2 {
+    margin-top: 16px;
+    max-width: 12ch;
+  }
+  .steps {
+    list-style: none;
+    margin: clamp(40px, 6vw, 72px) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    counter-reset: none;
+  }
+  li {
+    position: relative;
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  /* a thin line linking the cards, only where they sit side by side */
+  li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 52px;
+    right: -17px;
+    width: 18px;
+    height: 1px;
+    background: var(--line-strong);
+  }
+  .n {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--orange-soft);
+    color: var(--ink);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--orange) 40%, transparent);
+  }
+  h3 {
+    margin-top: 40px;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+  p {
+    margin-top: 10px;
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  @media (max-width: 860px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    li::after {
+      display: none;
+    }
+    h3 {
+      margin-top: 28px;
+    }
+  }
+</style>

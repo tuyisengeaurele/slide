@@ -1,0 +1,118 @@
+---
+import logo from '@slide/ui/brand/slide-logo.svg?url';
+
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: 'Product',
+    links: [
+      { label: 'Features', href: '/features' },
+      { label: 'How it works', href: '/how-it-works' },
+      { label: 'Pricing', href: '/pricing' },
+      { label: 'Security', href: '/security' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' },
+      { label: 'Customers', href: '/customers' },
+    ],
+  },
+  {
+    title: 'Resources',
+    links: [
+      { label: 'Help and docs', href: '/help' },
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'Terms', href: '/terms' },
+    ],
+  },
+];
+---
+
+<footer class="foot">
+  <div class="container grid">
+    <div class="about">
+      <img src={logo} alt="Slide" width="102" height="43" />
+      <p>Call center software that runs in the browser.</p>
+    </div>
+    {columns.map((col) => (
+      <nav aria-label={col.title}>
+        <h2>{col.title}</h2>
+        <ul>
+          {col.links.map((l) => (
+            <li>
+              <a href={l.href}>{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    ))}
+  </div>
+  <div class="container">
+    <div class="legal">© {year} Slide</div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    border-top: 1px solid var(--line);
+    padding-top: 72px;
+    background: var(--surface-2);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 40px;
+  }
+  .about img {
+    height: 30px;
+    width: auto;
+  }
+  .about p {
+    margin-top: 16px;
+    max-width: 28ch;
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  h2 {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+  }
+  li a {
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+    transition: color var(--dur-fast);
+  }
+  li a:hover {
+    color: var(--ink);
+  }
+  .legal {
+    margin-top: 64px;
+    padding-block: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 0.8125rem;
+    color: var(--ink-3);
+  }
+  @media (max-width: 720px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .about {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

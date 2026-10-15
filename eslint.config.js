@@ -15,6 +15,11 @@ export default tseslint.config(
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
   {
+    // astro generates this file with a triple-slash reference, that's the supported way
+    files: ['**/env.d.ts'],
+    rules: { '@typescript-eslint/triple-slash-reference': 'off' },
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     plugins: { 'react-hooks': react, 'jsx-a11y': jsxA11y },
     rules: {

@@ -1,0 +1,212 @@
+---
+import logo from '@slide/ui/brand/slide-logo.svg?url';
+import { appLink, nav } from '../lib/links';
+
+const current = Astro.url.pathname.replace(/\/$/, '');
+---
+
+<header class="nav">
+  <div class="container bar">
+    <a class="brand" href="/" aria-label="Slide, home">
+      <img src={logo} alt="Slide" width="102" height="43" />
+    </a>
+
+    <nav class="links" aria-label="Main">
+      {nav.map((item) => (
+        <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="end">
+      <button class="theme" type="button" aria-label="Switch color theme" data-theme-toggle>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="8.5"></circle>
+          <path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor"></path>
+        </svg>
+      </button>
+      <a class="signin" href={appLink('/sign-in')}>
+        Sign in
+      </a>
+      <a class="btn btn-primary btn-sm" href={appLink('/sign-up')}>
+        Start free
+      </a>
+
+      <details class="menu">
+        <summary aria-label="Menu">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M4 8h16M4 16h16"></path>
+          </svg>
+        </summary>
+        <div class="sheet">
+          {nav.map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+          <a href={appLink('/sign-in')}>Sign in</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: saturate(1.4) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    height: 68px;
+  }
+  .brand img {
+    height: 28px;
+    width: auto;
+  }
+  .links {
+    display: flex;
+    gap: 2px;
+    margin-left: 8px;
+  }
+  .links a {
+    padding: 8px 12px;
+    border-radius: var(--radius-pill);
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    transition:
+      color var(--dur-fast),
+      background var(--dur-fast);
+  }
+  .links a:hover,
+  .links a[aria-current='page'] {
+    color: var(--ink);
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+  .end {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .signin {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink-2);
+    border-radius: var(--radius-pill);
+  }
+  .signin:hover {
+    color: var(--ink);
+  }
+  .theme {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink-2);
+  }
+  .theme:hover {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+    color: var(--ink);
+  }
+  .theme svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .menu {
+    display: none;
+    position: relative;
+  }
+  .menu summary {
+    list-style: none;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .menu summary svg {
+    width: 22px;
+    height: 22px;
+  }
+  .sheet {
+    position: absolute;
+    right: 0;
+    top: 52px;
+    min-width: 220px;
+    padding: 8px;
+    display: grid;
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    box-shadow: var(--shadow-md);
+  }
+  .sheet a {
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+  }
+  .sheet a:hover {
+    background: color-mix(in srgb, var(--ink) 6%, transparent);
+  }
+
+  @media (max-width: 900px) {
+    .links,
+    .signin {
+      display: none;
+    }
+    .menu {
+      display: block;
+    }
+    .bar {
+      gap: 16px;
+    }
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+
+  function currentTheme(): 'light' | 'dark' {
+    const set = root.dataset.theme;
+    if (set === 'light' || set === 'dark') return set;
+    return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('slide-theme', next);
+    } catch {
+      // private mode, the choice just won't stick
+    }
+  });
+</script>

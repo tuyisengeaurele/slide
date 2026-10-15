@@ -1,0 +1,236 @@
+---
+// The supervisor wall. Stays dark in both themes, it's meant to look like a screen on a wall.
+const queues = [
+  { name: 'Billing', waiting: 3, longest: '1:12', load: 72 },
+  { name: 'Support', waiting: 7, longest: '2:40', load: 94, hot: true },
+  { name: 'Sales', waiting: 1, longest: '0:18', load: 28 },
+  { name: 'Onboarding', waiting: 0, longest: '0:00', load: 12 },
+];
+const agents = [
+  { n: 'Maya R.', s: 'On a call', c: 'live' },
+  { n: 'Tomas L.', s: 'Available', c: 'free' },
+  { n: 'Priya S.', s: 'Wrap-up', c: 'wrap' },
+  { n: 'Daniel O.', s: 'On a call', c: 'live' },
+  { n: 'Ines F.', s: 'Break', c: 'off' },
+];
+---
+
+<section class="floor section" id="floor">
+  <div class="container">
+    <div class="intro">
+      <p class="kicker reveal">For supervisors</p>
+      <h2 class="h2 reveal">
+        See the whole floor <span class="soft">at a glance.</span>
+      </h2>
+      <p class="lede reveal">
+        Queues, waiting callers and agent status on one screen, updating as calls move. Spot the
+        queue that's backing up before the callers do.
+      </p>
+    </div>
+
+    <div class="wall reveal" aria-hidden="true">
+      <div class="top">
+        <b>Live floor</b>
+        <span class="tag">Sample data</span>
+      </div>
+
+      <div class="cols">
+        <ul class="queues">
+          {queues.map((q) => (
+            <li class:list={{ hot: q.hot }}>
+              <div class="row">
+                <b>{q.name}</b>
+                <span>{q.waiting} waiting</span>
+              </div>
+              <div class="meter">
+                <i style={`--load: ${q.load}%`}></i>
+              </div>
+              <small>Longest wait {q.longest}</small>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="agents">
+          {agents.map((a) => (
+            <li>
+              <i class={a.c}></i>
+              <b>{a.n}</b>
+              <span>{a.s}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .floor {
+    /* fixed colors on purpose: this block is always dark */
+    --f-bg: #14100d;
+    --f-surface: #1c1713;
+    --f-line: rgb(255 244 214 / 0.1);
+    --f-ink: #f7efdd;
+    --f-ink-2: #b9ac97;
+    --f-ink-3: #948878;
+    background:
+      radial-gradient(60% 50% at 80% 0%, rgb(252 108 38 / 0.18), transparent 70%), var(--f-bg);
+    color: var(--f-ink);
+  }
+  .floor .kicker,
+  .floor .h2 .soft {
+    color: var(--f-ink-3);
+  }
+  .floor .lede {
+    color: var(--f-ink-2);
+  }
+  .intro {
+    max-width: 40rem;
+  }
+  .intro .h2 {
+    margin-top: 16px;
+  }
+  .intro .lede {
+    margin-top: 24px;
+  }
+
+  .wall {
+    margin-top: clamp(40px, 6vw, 72px);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    background: var(--f-surface);
+    border: 1px solid var(--f-line);
+    box-shadow: 0 40px 100px -30px rgb(0 0 0 / 0.7);
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    font-size: 0.9375rem;
+  }
+  .tag {
+    padding: 2px 8px;
+    border: 1px dashed var(--f-line);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    color: var(--f-ink-3);
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 16px;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .queues {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .queues li {
+    padding: 18px;
+    border-radius: var(--radius-md);
+    background: rgb(255 244 214 / 0.04);
+    border: 1px solid var(--f-line);
+  }
+  .queues li.hot {
+    border-color: rgb(252 108 38 / 0.55);
+    background: rgb(252 108 38 / 0.09);
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .row b {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .row span {
+    font-size: 0.84rem;
+    color: var(--f-ink-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .meter {
+    margin: 16px 0 12px;
+    height: 6px;
+    border-radius: 6px;
+    background: rgb(255 244 214 / 0.08);
+    overflow: hidden;
+  }
+  .meter i {
+    display: block;
+    height: 100%;
+    width: var(--load);
+    border-radius: 6px;
+    background: var(--orange);
+  }
+  small {
+    font-size: 0.78rem;
+    color: var(--f-ink-3);
+  }
+
+  .agents {
+    padding: 8px 6px;
+    border-radius: var(--radius-md);
+    background: rgb(255 244 214 / 0.04);
+    border: 1px solid var(--f-line);
+  }
+  .agents li {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    font-size: 0.875rem;
+  }
+  .agents li + li {
+    border-top: 1px solid var(--f-line);
+  }
+  .agents b {
+    font-weight: 540;
+  }
+  .agents span {
+    color: var(--f-ink-3);
+    font-size: 0.8125rem;
+  }
+  .agents i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .agents i.live {
+    background: var(--orange);
+    box-shadow: 0 0 0 4px rgb(252 108 38 / 0.2);
+  }
+  .agents i.free {
+    background: #3ccf91;
+    box-shadow: 0 0 0 4px rgb(60 207 145 / 0.18);
+  }
+  .agents i.wrap {
+    background: #e7b84a;
+    box-shadow: 0 0 0 4px rgb(231 184 74 / 0.18);
+  }
+  .agents i.off {
+    background: var(--f-ink-3);
+  }
+
+  @media (max-width: 860px) {
+    .cols {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 520px) {
+    .queues {
+      grid-template-columns: 1fr;
+    }
+    .wall {
+      padding: 16px;
+    }
+  }
+</style>

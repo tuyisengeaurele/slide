@@ -1,0 +1,59 @@
+---
+// No customers yet, so no logos. This row is a stand-in and says so out loud.
+const slots = [96, 120, 84, 132, 104];
+---
+
+<section class="logos" aria-label="Customer logos, placeholder">
+  <div class="container">
+    <p class="cap">
+      <span class="tag">Placeholder</span>
+      Customer logos go here once there are customers to show.
+    </p>
+    <ul aria-hidden="true">
+      {slots.map((w) => (
+        <li style={`--w: ${w}px`}></li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .logos {
+    padding-block: 8px 24px;
+  }
+  .cap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--ink-3);
+  }
+  .tag {
+    padding: 2px 8px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  ul {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px 48px;
+  }
+  li {
+    width: var(--w);
+    height: 28px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--ink) 7%, transparent);
+  }
+</style>

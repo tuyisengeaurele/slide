@@ -1,0 +1,160 @@
+---
+// Step three: outcome picked, everything saved.
+const bars = [14, 28, 20, 36, 24, 40, 18, 32, 22, 30, 16, 26, 38, 20, 28, 14];
+---
+
+<div class="card">
+  <div class="top">
+    <b>Call ended</b>
+    <small>02:20 · Billing</small>
+  </div>
+
+  <div class="rec" aria-hidden="true">
+    <span class="play"></span>
+    <div class="bars">
+      {bars.map((h) => (
+        <i style={`height: ${h}px`}></i>
+      ))}
+    </div>
+  </div>
+
+  <p class="label">Outcome</p>
+  <div class="chips">
+    <span>Follow up</span>
+    <span class="on">Resolved</span>
+    <span>Escalate</span>
+  </div>
+
+  <div class="saved">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+    </svg>
+    Saved to ticket #1042 · recording stored
+  </div>
+  <p class="foot">Sample data</p>
+</div>
+
+<style>
+  .card {
+    width: min(100%, 440px);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    box-shadow: var(--shadow-frame);
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  b {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  small {
+    color: var(--ink-3);
+    font-size: 0.8125rem;
+  }
+  .rec {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  .play {
+    flex: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--ink);
+    position: relative;
+  }
+  .play::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 9px;
+    border-left: 9px solid var(--bg);
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+  }
+  .bars {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+  }
+  .bars i {
+    width: 4px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--orange) 80%, transparent);
+  }
+  .label {
+    margin-top: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .chips {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .chips span {
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line-strong);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+  .chips .on {
+    border-color: var(--orange);
+    background: var(--orange-soft);
+    color: var(--ink);
+    box-shadow: 0 0 0 3px var(--orange-soft);
+  }
+  .saved {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 0.8125rem;
+  }
+  .saved svg {
+    width: 18px;
+    height: 18px;
+    color: var(--orange);
+  }
+  .foot {
+    margin-top: 14px;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    text-align: right;
+  }
+</style>

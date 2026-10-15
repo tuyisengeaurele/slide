@@ -1,0 +1,125 @@
+---
+// Step two: the caller's history is already on screen.
+---
+
+<div class="card">
+  <div class="who">
+    <span class="av">DO</span>
+    <div>
+      <b>Daniel Okafor</b>
+      <small>Customer since Mar 2023 · Pro, annual</small>
+    </div>
+  </div>
+
+  <ul class="timeline">
+    <li>
+      <i></i>
+      <div>
+        <b>#1042 Charged twice in June</b>
+        <small>Open · chat, Tuesday</small>
+      </div>
+    </li>
+    <li>
+      <i class="soft"></i>
+      <div>
+        <b>Called about invoice format</b>
+        <small>Resolved · 3 days ago</small>
+      </div>
+    </li>
+    <li>
+      <i class="soft"></i>
+      <div>
+        <b>Upgraded to annual</b>
+        <small>Mar 2024</small>
+      </div>
+    </li>
+  </ul>
+
+  <div class="note">
+    <small>Last note</small>
+    <p>Prefers email receipts. Finance team handles refunds, check before promising a date.</p>
+  </div>
+  <p class="foot">Sample data</p>
+</div>
+
+<style>
+  .card {
+    width: min(100%, 440px);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    box-shadow: var(--shadow-frame);
+  }
+  .who {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+  .av {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--orange);
+    color: var(--orange-ink);
+    font-weight: 600;
+    box-shadow: 0 0 0 5px var(--orange-soft);
+  }
+  b {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  small {
+    color: var(--ink-3);
+    font-size: 0.8125rem;
+  }
+  .timeline {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .timeline li {
+    display: flex;
+    gap: 12px;
+  }
+  .timeline i {
+    flex: none;
+    width: 9px;
+    height: 9px;
+    margin-top: 6px;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+  .timeline i.soft {
+    background: var(--line-strong);
+  }
+  .timeline b {
+    font-size: 0.875rem;
+    font-weight: 560;
+  }
+  .note {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  .note p {
+    margin-top: 4px;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+    line-height: 1.45;
+  }
+  .foot {
+    margin-top: 14px;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    text-align: right;
+  }
+</style>

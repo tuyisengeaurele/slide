@@ -1,0 +1,169 @@
+---
+import { plans } from '../lib/plans';
+---
+
+<section class="pricing section" id="pricing">
+  <div class="container">
+    <header class="head reveal">
+      <p class="kicker">Pricing</p>
+      <h2 class="h2">
+        Per seat, <span class="soft">no surprises.</span>
+      </h2>
+      <p class="lede">
+        You pay for the people taking calls. Final prices aren't set yet, so the numbers below are
+        marked as placeholders.
+      </p>
+    </header>
+
+    <div class="plans">
+      {plans.map((p, i) => (
+        <article class:list={['plan', 'reveal', { featured: p.featured }]} style={`--i: ${i}`}>
+          <h3>{p.name}</h3>
+          <p class="line">{p.line}</p>
+          <p class="price">
+            <b>$XX</b>
+            <span>per agent, per month</span>
+            <em>Placeholder</em>
+          </p>
+          <ul>
+            {p.points.map((pt) => (
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+                </svg>
+                {pt}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <p class="more reveal">
+      <a class="btn btn-ghost" href="/pricing">
+        Compare plans
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .head {
+    max-width: 34rem;
+  }
+  .head .h2 {
+    margin-top: 16px;
+  }
+  .head .lede {
+    margin-top: 20px;
+  }
+  .plans {
+    margin-top: clamp(40px, 6vw, 72px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    align-items: stretch;
+  }
+  .plan {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .plan.featured {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+    box-shadow: var(--shadow-frame);
+  }
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .line {
+    margin-top: 8px;
+    min-height: 3em;
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+  .featured .line {
+    color: color-mix(in srgb, var(--bg) 72%, transparent);
+  }
+  .price {
+    margin-top: 28px;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+  }
+  .price b {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .price span {
+    font-size: 0.84rem;
+    color: var(--ink-3);
+  }
+  .featured .price span {
+    color: color-mix(in srgb, var(--bg) 60%, transparent);
+  }
+  .price em {
+    font-style: normal;
+    padding: 2px 8px;
+    border: 1px dashed currentColor;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  ul {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 12px;
+  }
+  .featured ul {
+    border-color: color-mix(in srgb, var(--bg) 16%, transparent);
+  }
+  li {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 0.9375rem;
+  }
+  li svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    color: var(--orange);
+  }
+  .more {
+    margin-top: 32px;
+    text-align: center;
+  }
+  @media (max-width: 900px) {
+    .plans {
+      grid-template-columns: 1fr;
+    }
+    .line {
+      min-height: 0;
+    }
+  }
+</style>

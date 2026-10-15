@@ -1,0 +1,197 @@
+---
+import RouteScene from './scenes/RouteScene.astro';
+import ContextScene from './scenes/ContextScene.astro';
+import WrapScene from './scenes/WrapScene.astro';
+
+// "A call, from ring to resolved". Three steps, one sticky picture on desktop.
+// Without JS (or on small screens) every step just carries its own picture.
+const steps = [
+  {
+    n: '01',
+    title: 'It rings once, in the right place.',
+    body: 'Calls go to the right queue by skill, opening hours and who is free. Nobody picks up a call that was never theirs.',
+  },
+  {
+    n: '02',
+    title: 'The agent already knows who is calling.',
+    body: 'History, open tickets and the last few notes are on screen before anyone says hello.',
+  },
+  {
+    n: '03',
+    title: "It's done when the call is done.",
+    body: 'Notes, outcome and the recording save themselves, so wrap-up takes a few seconds instead of a few minutes.',
+  },
+];
+---
+
+<section class="story section" id="story" data-story>
+  <div class="container">
+    <header class="head reveal">
+      <p class="kicker">One call, start to finish</p>
+      <h2 class="h2">
+        A call, from ring <span class="soft">to resolved.</span>
+      </h2>
+    </header>
+
+    <div class="grid">
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step" data-step={i + 1}>
+            <span class="num">{s.n}</span>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+
+            <!-- the card each step shows when the sticky picture isn't in play -->
+            <div class="inline-scene" aria-hidden="true">
+              {i === 0 && <RouteScene />}
+              {i === 1 && <ContextScene />}
+              {i === 2 && <WrapScene />}
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div class="stick" aria-hidden="true">
+        <div class="scene" data-scene="1">
+          <RouteScene />
+        </div>
+        <div class="scene" data-scene="2">
+          <ContextScene />
+        </div>
+        <div class="scene" data-scene="3">
+          <WrapScene />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .head .h2 {
+    margin-top: 16px;
+    max-width: 13ch;
+  }
+  .grid {
+    margin-top: clamp(40px, 6vw, 80px);
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 64px;
+  }
+  .num {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--ink-2);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .num::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+  }
+  .step h3 {
+    margin-top: 12px;
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    max-width: 20ch;
+  }
+  .step p {
+    margin-top: 14px;
+    max-width: 44ch;
+    color: var(--ink-2);
+  }
+  .inline-scene {
+    margin-top: 28px;
+  }
+  .stick {
+    display: none;
+  }
+
+  /* desktop with JS: one sticky picture, steps scroll past it */
+  @media (min-width: 960px) {
+    [data-story][data-enhanced] .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    [data-story][data-enhanced] .steps {
+      gap: 0;
+    }
+    [data-story][data-enhanced] .step {
+      min-height: 72vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    /* steps you've scrolled past or not reached yet go quiet, using real colors so they stay readable */
+    [data-story][data-enhanced] .step :is(h3, p, .num) {
+      transition: color var(--dur-slow) var(--ease-out);
+    }
+    [data-story][data-enhanced] .step:not(.on) :is(h3, p, .num) {
+      color: var(--ink-3);
+    }
+    [data-story][data-enhanced] .inline-scene {
+      display: none;
+    }
+    [data-story][data-enhanced] .stick {
+      display: block;
+      position: sticky;
+      top: calc(50vh - 220px);
+      height: 440px;
+    }
+    [data-story][data-enhanced] .scene {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+      transition:
+        opacity var(--dur-slow) var(--ease-out),
+        transform var(--dur-slow) var(--ease-out);
+    }
+    [data-story][data-enhanced][data-active='1'] .scene[data-scene='1'],
+    [data-story][data-enhanced][data-active='2'] .scene[data-scene='2'],
+    [data-story][data-enhanced][data-active='3'] .scene[data-scene='3'] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-story]');
+
+  if (root && matchMedia('(min-width: 960px)').matches) {
+    const steps = Array.from(root.querySelectorAll<HTMLElement>('.step'));
+    root.dataset.enhanced = '';
+    root.dataset.active = '1';
+    steps[0]?.classList.add('on');
+
+    // whichever step crosses the middle of the screen is the active one
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const n = (e.target as HTMLElement).dataset.step ?? '1';
+          root.dataset.active = n;
+          steps.forEach((s) => s.classList.toggle('on', s === e.target));
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    );
+    steps.forEach((s) => io.observe(s));
+  }
+</script>

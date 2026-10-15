@@ -1,0 +1,126 @@
+---
+// Step one: an incoming call picks a queue.
+---
+
+<div class="card">
+  <div class="incoming">
+    <span class="pip"></span>
+    <div>
+      <b>Incoming call</b>
+      <small>+1 (555) 014-2290</small>
+    </div>
+    <span class="wait">0:02</span>
+  </div>
+
+  <div class="rules">
+    <span>Open hours</span>
+    <span>Language: English</span>
+    <span>Billing skill</span>
+  </div>
+
+  <ul class="queues">
+    <li class="pick">
+      <b>Billing</b>
+      <span>2 agents free</span>
+    </li>
+    <li>
+      <b>Support</b>
+      <span>busy</span>
+    </li>
+    <li>
+      <b>Sales</b>
+      <span>closed</span>
+    </li>
+  </ul>
+  <p class="foot">Sample data</p>
+</div>
+
+<style>
+  .card {
+    width: min(100%, 440px);
+    padding: 20px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    box-shadow: var(--shadow-frame);
+  }
+  .incoming {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  .pip {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 0 6px var(--orange-soft);
+  }
+  b {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  small {
+    color: var(--ink-3);
+    font-size: 0.8125rem;
+  }
+  .wait {
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-3);
+    font-size: 0.8125rem;
+  }
+  .rules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .rules span {
+    padding: 5px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line-strong);
+    font-size: 0.78rem;
+    color: var(--ink-2);
+  }
+  .queues {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+  }
+  .queues li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line);
+    color: var(--ink-3);
+    font-size: 0.875rem;
+  }
+  .queues li b {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+  }
+  .queues li.pick {
+    border-color: color-mix(in srgb, var(--orange) 45%, transparent);
+    background: var(--orange-soft);
+    color: var(--ink-2);
+  }
+  .queues li.pick b {
+    color: var(--ink);
+  }
+  .foot {
+    margin-top: 14px;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    text-align: right;
+  }
+</style>

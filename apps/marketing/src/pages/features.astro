@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import RouteScene from '../components/scenes/RouteScene.astro';
+import ContextScene from '../components/scenes/ContextScene.astro';
+import WrapScene from '../components/scenes/WrapScene.astro';
+import FinalCta from '../components/FinalCta.astro';
+
+const blocks = [
+  {
+    id: 'agents',
+    kicker: 'For agents',
+    title: 'A workspace that stays out of the way.',
+    body: 'The softphone, the caller and their history sit on one screen. Answer, hold, transfer and wrap up without hunting through tabs.',
+    points: [
+      'Softphone in the browser, headset in, no install',
+      'Caller history and open tickets shown as the call rings',
+      'Notes and outcome saved in one step',
+    ],
+    scene: 'context',
+  },
+  {
+    id: 'routing',
+    kicker: 'Routing',
+    title: 'Send every call to the right person.',
+    body: 'Build the path a call takes: opening hours, language, skill, priority, overflow. You can read the whole thing before it goes live.',
+    points: [
+      'Opening hours and holiday schedules',
+      'Skills and priority per queue',
+      'Overflow and voicemail when nobody is free',
+    ],
+    scene: 'route',
+  },
+  {
+    id: 'supervisors',
+    kicker: 'For supervisors',
+    title: 'Know how the day is going, while it is going.',
+    body: 'Live queues and agent status on one board. See who is waiting, who is free, and where a queue is starting to back up.',
+    points: [
+      'Live wall of queues and waiting callers',
+      'Agent status at a glance',
+      'Call history with recordings, searchable',
+    ],
+    scene: 'wrap',
+  },
+];
+---
+
+<Base
+  title="Features"
+  description="Browser softphone, routing, live queues, recording and reporting. What Slide does and who it is for."
+>
+  <PageHero
+    kicker="Features"
+    title="Built for the people"
+    soft="on the phone."
+    lede="One place to take calls, route them, watch the floor and learn from the numbers."
+  />
+
+  {blocks.map((b, i) => (
+    <section class="block section" id={b.id}>
+      <div class:list={['container', 'row', { flip: i % 2 === 1 }]}>
+        <div class="copy reveal">
+          <p class="kicker">{b.kicker}</p>
+          <h2 class="h2">{b.title}</h2>
+          <p class="lede">{b.body}</p>
+          <ul>
+            {b.points.map((p) => (
+              <li>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+                </svg>
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="art reveal" aria-hidden="true">
+          {b.scene === 'context' && <ContextScene />}
+          {b.scene === 'route' && <RouteScene />}
+          {b.scene === 'wrap' && <WrapScene />}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <FinalCta />
+</Base>
+
+<style>
+  .block {
+    padding-block: clamp(48px, 7vw, 96px);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: center;
+  }
+  .flip .copy {
+    order: 2;
+  }
+  .h2 {
+    margin-top: 16px;
+    font-size: var(--text-3xl);
+  }
+  .lede {
+    margin-top: 20px;
+  }
+  ul {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+  }
+  li {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    color: var(--ink-2);
+  }
+  li svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    color: var(--orange);
+  }
+  .art {
+    display: grid;
+    place-items: center;
+    padding: clamp(24px, 4vw, 56px);
+    border-radius: 28px;
+    background: var(--vanilla);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 860px) {
+    .row {
+      grid-template-columns: 1fr;
+    }
+    .flip .copy {
+      order: 0;
+    }
+  }
+</style>

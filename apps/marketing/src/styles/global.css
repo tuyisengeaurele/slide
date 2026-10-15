@@ -1,6 +1,19 @@
 @import '@slide/ui/tokens.css';
 @import '@fontsource-variable/geist/wght.css';
 
+/*
+  Stand-in shown while Geist loads. Arial scaled to Geist's width and vertical metrics,
+  so text doesn't jump when the real font swaps in.
+*/
+@font-face {
+  font-family: 'Geist Fallback';
+  src: local('Arial');
+  size-adjust: 102.7%;
+  ascent-override: 98.4%;
+  descent-override: 29.2%;
+  line-gap-override: 0%;
+}
+
 @property --sec {
   syntax: '<integer>';
   inherits: false;

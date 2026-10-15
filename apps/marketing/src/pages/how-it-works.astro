@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Steps from '../components/Steps.astro';
+import Story from '../components/Story.astro';
+import FinalCta from '../components/FinalCta.astro';
+---
+
+<Base
+  title="How it works"
+  description="From connecting a number to taking the first call, and what happens to a call along the way."
+>
+  <PageHero
+    kicker="How it works"
+    title="From a phone number"
+    soft="to a working floor."
+    lede="Three steps to get going, and a closer look at what happens to a single call."
+  />
+  <Steps />
+  <Story />
+  <FinalCta />
+</Base>

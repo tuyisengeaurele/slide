@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FinalCta from '../components/FinalCta.astro';
+
+const areas = [
+  {
+    t: 'Your data stays yours',
+    b: 'Every account is its own tenant. Isolation is enforced in the database itself, not only in application code, so one customer cannot read another customer’s records.',
+  },
+  {
+    t: 'Encryption throughout',
+    b: 'Traffic is encrypted in transit. Stored data and call recordings are encrypted at rest.',
+  },
+  {
+    t: 'Recordings, handled carefully',
+    b: 'Recording is a setting you turn on per number, callers hear a notice first, and playback links are signed and expire.',
+  },
+  {
+    t: 'Sign-in you can trust',
+    b: 'Passwords are hashed with a modern algorithm, sessions are rotated, and two-step verification is available for every user.',
+  },
+  {
+    t: 'Roles and an audit trail',
+    b: 'Owners, admins, supervisors and agents each see only what their job needs. Sensitive actions are written to an audit log.',
+  },
+  {
+    t: 'Built to a standard',
+    b: 'We follow OWASP ASVS while we build, validate every input, and use parameterized queries only.',
+  },
+];
+---
+
+<Base
+  title="Security"
+  description="How Slide is built to keep customer data and call recordings safe."
+>
+  <PageHero
+    kicker="Security"
+    title="Built carefully,"
+    soft="from the first line."
+    lede="Call data is sensitive. Here's how we're designing Slide to protect it."
+  />
+
+  <section class="section">
+    <div class="container">
+      <ul class="grid">
+        {areas.map((a, i) => (
+          <li class="reveal" style={`--i: ${i % 3}`}>
+            <h2>{a.t}</h2>
+            <p>{a.b}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p class="note reveal">
+        <b>Where we are.</b> Slide is pre-launch. We haven't completed an independent audit or a
+        compliance certification yet, and we won't claim one until we have.
+      </p>
+    </div>
+  </section>
+
+  <FinalCta />
+</Base>
+
+<style>
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .grid li {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  h2 {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+  }
+  .grid p {
+    margin-top: 10px;
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  .note {
+    margin-top: 32px;
+    padding: 20px 24px;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-md);
+    background: var(--surface-2);
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  .note b {
+    color: var(--ink);
+  }
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 620px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

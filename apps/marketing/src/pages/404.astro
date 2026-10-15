@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found" description="That page doesn't exist.">
+  <section class="lost">
+    <div class="container">
+      <p class="kicker">404</p>
+      <h1>
+        This line is <span class="soft">disconnected.</span>
+      </h1>
+      <p class="lede">The page you were after has moved or never existed.</p>
+      <p class="go">
+        <a class="btn btn-primary" href="/">
+          Back to the homepage
+        </a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lost {
+    padding-block: clamp(96px, 16vw, 220px);
+    text-align: center;
+  }
+  h1 {
+    margin: 16px auto 0;
+    max-width: 14ch;
+    font-size: var(--text-4xl);
+    font-weight: 620;
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+    text-wrap: balance;
+  }
+  h1 .soft {
+    color: var(--ink-3);
+  }
+  .lede {
+    margin: 20px auto 0;
+  }
+  .go {
+    margin-top: 32px;
+  }
+</style>

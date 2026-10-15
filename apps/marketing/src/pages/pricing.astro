@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import PricingTeaser from '../components/PricingTeaser.astro';
+import Faq from '../components/Faq.astro';
+import { comparison } from '../lib/plans';
+---
+
+<Base
+  title="Pricing"
+  description="Per-agent pricing with plans for small teams up to larger floors. Final prices are not set yet."
+>
+  <PageHero
+    kicker="Pricing"
+    title="Pay for the people"
+    soft="taking calls."
+    lede="Plans scale with the size of your team. Prices are placeholders until we finish working them out."
+  />
+
+  <PricingTeaser />
+
+  <section class="compare section" id="compare">
+    <div class="container">
+      <h2 class="h2 reveal">Compare plans</h2>
+      <div class="scroll reveal" role="region" aria-label="Plan comparison" tabindex="0">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">
+                <span class="sr-only">Feature</span>
+              </th>
+              <th scope="col">Starter</th>
+              <th scope="col">Team</th>
+              <th scope="col">Business</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparison.map((row) => (
+              <tr>
+                <th scope="row">{row.feature}</th>
+                {[row.starter, row.team, row.business].map((on) => (
+                  <td>
+                    {on ? (
+                      <>
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+                        </svg>
+                        <span class="sr-only">Included</span>
+                      </>
+                    ) : (
+                      <>
+                        <span aria-hidden="true">–</span>
+                        <span class="sr-only">Not included</span>
+                      </>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <Faq />
+</Base>
+
+<style>
+  .compare {
+    padding-top: 0;
+  }
+  .h2 {
+    font-size: var(--text-3xl);
+    margin-bottom: 32px;
+  }
+  .scroll {
+    /* sr-only labels inside are absolute, without this they escape the scroll box and widen the page */
+    position: relative;
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  table {
+    width: 100%;
+    min-width: 560px;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  th,
+  td {
+    padding: 16px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  thead th {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  tbody th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
+  tbody tr:last-child th,
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+  td svg {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    color: var(--orange);
+  }
+  td span[aria-hidden] {
+    color: var(--ink-3);
+  }
+</style>

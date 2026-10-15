@@ -1,6 +1,6 @@
 ---
 import icon from '@slide/ui/brand/slide-icon.svg?url';
-import { appLink } from '../lib/links';
+import { cta } from '../lib/links';
 ---
 
 <section class="cta section">
@@ -8,12 +8,15 @@ import { appLink } from '../lib/links';
     <div class="panel reveal">
       <img src={icon} alt="" width="56" height="66" />
       <h2 class="h2">
-        Pick up the phone. <span class="soft">We'll handle the rest.</span>
+        Be one of the first teams <span class="soft">on Slide.</span>
       </h2>
-      <p class="lede">Set up a team, point a number at it, and take a call today.</p>
+      <p class="lede">
+        We're piloting in Rwanda and talking to teams in other countries too. Tell us how your calls
+        work today and we'll show you where Slide fits.
+      </p>
       <div class="actions">
-        <a class="btn btn-primary" href={appLink('/sign-up')}>
-          Start free
+        <a class="btn btn-primary" href={cta.href}>
+          {cta.label}
           <svg
             viewBox="0 0 16 16"
             fill="none"
@@ -26,8 +29,8 @@ import { appLink } from '../lib/links';
             <path d="M3 8h10M9 4l4 4-4 4"></path>
           </svg>
         </a>
-        <a class="btn btn-ghost" href="/contact">
-          Talk to us
+        <a class="btn btn-ghost" href="/how-it-works">
+          See how it works
         </a>
       </div>
     </div>

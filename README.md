@@ -4,10 +4,12 @@
 
 # Slide
 
-Call center software that runs in the browser. Agents take and make calls, supervisors
-watch the queues as they move, and managers get numbers they can actually use.
+Call center software for whole phone teams. Agents take and make calls with the caller's history
+on screen, supervisors watch the queues as they move, and managers get numbers they can use.
+Piloting in Rwanda first, built for teams everywhere.
 
-This repo is early. Right now it holds the marketing site and the shared design system.
+This repo is early. Right now it holds the marketing site, the shared design system and a page that shows every
+component.
 The product app, API and telephony come after.
 
 ## What's here

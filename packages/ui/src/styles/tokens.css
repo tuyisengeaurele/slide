@@ -61,7 +61,7 @@
   --text-2xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
   --text-3xl: clamp(2rem, 1.4rem + 2vw, 3rem);
   --text-4xl: clamp(2.5rem, 1.5rem + 3.4vw, 4.5rem);
-  --text-hero: clamp(2.875rem, 1.2rem + 7vw, 6.5rem);
+  --text-hero: clamp(2.5rem, 1rem + 5.4vw, 5.25rem);
 
   /* space, 4px grid */
   --space-1: 4px;

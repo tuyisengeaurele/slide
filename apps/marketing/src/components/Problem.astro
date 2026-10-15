@@ -1,0 +1,105 @@
+---
+// The felt problem, in the words a call center manager would use. No stats, none are ours to claim.
+const pains = [
+  {
+    title: 'It rings on the wrong phone.',
+    body: 'Calls land on personal phones, desk phones and WhatsApp. Whoever is closest answers, whether or not they are the right person.',
+  },
+  {
+    title: 'Nobody can prove what happened.',
+    body: 'A customer says they called three times. You have nothing to check, so you apologise and hope.',
+  },
+  {
+    title: 'The floor is a guessing game.',
+    body: 'Supervisors walk the room asking who is free. By the time they know a queue is backed up, callers have already hung up.',
+  },
+];
+---
+
+<section class="problem section" id="problem">
+  <div class="container">
+    <header class="head reveal">
+      <p class="kicker">Sound familiar?</p>
+      <h2 class="h2">
+        A call comes in. <span class="soft">Then what?</span>
+      </h2>
+    </header>
+
+    <ol class="pains">
+      {pains.map((p, i) => (
+        <li class="reveal" style={`--i: ${i}`}>
+          <span class="n" aria-hidden="true">
+            {i + 1}
+          </span>
+          <h3>{p.title}</h3>
+          <p>{p.body}</p>
+        </li>
+      ))}
+    </ol>
+
+    <p class="close reveal">Any team ends up here when its phones have no system behind them.</p>
+  </div>
+</section>
+
+<style>
+  .head .h2 {
+    margin-top: 16px;
+    max-width: 16ch;
+  }
+  .pains {
+    list-style: none;
+    margin: clamp(36px, 5vw, 64px) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  li {
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .n {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    box-shadow: 0 0 0 1px var(--line-strong);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  h3 {
+    margin-top: 40px;
+    font-size: 1.3125rem;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+  li p {
+    margin-top: 12px;
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  .close {
+    margin-top: 32px;
+    max-width: 44ch;
+    font-size: var(--text-xl);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  @media (max-width: 860px) {
+    .pains {
+      grid-template-columns: 1fr;
+    }
+    h3 {
+      margin-top: 24px;
+    }
+  }
+</style>

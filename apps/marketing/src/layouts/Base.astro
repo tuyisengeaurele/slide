@@ -11,12 +11,12 @@ interface Props {
 
 const {
   title,
-  description = 'Slide is call center software that runs in the browser. Agents take calls, supervisors watch the queues live, managers get numbers they can trust.',
+  description = "Slide is call center software for your whole phone team. Agents answer with the customer's history on screen, supervisors see every queue live, managers get numbers they can trust. Piloting in Rwanda.",
 } = Astro.props;
 
 const pageTitle = title
   ? `${title} · Slide`
-  : 'Slide: call center software that runs in the browser';
+  : 'Slide: call center software for your whole phone team';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 

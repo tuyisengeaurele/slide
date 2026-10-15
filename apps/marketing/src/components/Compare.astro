@@ -1,0 +1,131 @@
+---
+// The honest comparison: not rival products, just how most teams cope without a system.
+const rows = [
+  {
+    q: 'Who answered that call?',
+    today: 'Ask around.',
+    slide: "It's in the call history.",
+  },
+  {
+    q: 'Was it recorded?',
+    today: 'Usually not.',
+    slide: 'Yes, with consent, one click to play.',
+  },
+  {
+    q: "Who's free right now?",
+    today: 'Walk the floor.',
+    slide: 'A live board of every agent.',
+  },
+  {
+    q: 'How many calls did we miss?',
+    today: 'A guess.',
+    slide: 'A number, by hour and queue.',
+  },
+  {
+    q: 'Who is this customer?',
+    today: "Another tab, a notebook, or someone's memory.",
+    slide: 'Their history is on screen as the call arrives.',
+  },
+];
+---
+
+<section class="compare section" id="compare">
+  <div class="container">
+    <header class="head reveal">
+      <p class="kicker">Before and after</p>
+      <h2 class="h2">
+        From "who answered?" <span class="soft">to knowing.</span>
+      </h2>
+    </header>
+
+    <div
+      class="scroll reveal"
+      role="region"
+      aria-label="How most teams cope today, and with Slide"
+      tabindex="0"
+    >
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">
+              <span class="sr-only">Question</span>
+            </th>
+            <th scope="col">Phones and spreadsheets</th>
+            <th scope="col" class="us">
+              With Slide
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr>
+              <th scope="row">{r.q}</th>
+              <td>{r.today}</td>
+              <td class="us">{r.slide}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .head .h2 {
+    margin-top: 16px;
+    max-width: 14ch;
+  }
+  .scroll {
+    position: relative;
+    margin-top: clamp(36px, 5vw, 64px);
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  table {
+    width: 100%;
+    min-width: 640px;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+  th,
+  td {
+    padding: 20px 24px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--line);
+  }
+  thead th {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  thead th.us {
+    color: var(--ink);
+  }
+  tbody th {
+    width: 30%;
+    font-weight: 560;
+    letter-spacing: -0.015em;
+  }
+  td {
+    color: var(--ink-2);
+  }
+  td.us {
+    color: var(--ink);
+    font-weight: 500;
+    background: var(--orange-soft);
+    box-shadow: inset 3px 0 0 var(--orange);
+  }
+  thead th.us {
+    background: var(--orange-soft);
+    box-shadow: inset 3px 0 0 var(--orange);
+  }
+  tbody tr:last-child th,
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+</style>

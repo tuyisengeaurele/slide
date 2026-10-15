@@ -6,45 +6,81 @@ import PageHero from '../components/PageHero.astro';
 const email = import.meta.env.PUBLIC_CONTACT_EMAIL as string | undefined;
 ---
 
-<Base title="Contact" description="Get in touch about Slide.">
+<Base
+  title="Request early access"
+  description="Tell us about your phone team and how your calls work today. We're piloting Slide in Rwanda and talking to teams in other countries too."
+>
   <PageHero
-    kicker="Contact"
-    title="Talk to a person,"
-    soft="not a funnel."
-    lede="Questions, a demo, or just curious how it would fit your team? Tell us a little and we'll write back."
+    kicker="Early access"
+    title="Tell us about"
+    soft="your team."
+    lede="We're piloting Slide in Rwanda and talking to teams in other countries too. Tell us how your calls work today and we'll be in touch."
   />
 
   <section class="section">
     <div class="container wrap">
       <form class="form reveal" data-email={email ?? ''}>
+        <div class="two">
+          <label>
+            <span>Your name</span>
+            <input name="name" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Work email</span>
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+        </div>
+        <div class="two">
+          <label>
+            <span>Organisation</span>
+            <input name="organisation" autocomplete="organization" required />
+          </label>
+          <label>
+            <span>Country</span>
+            <input name="country" autocomplete="country-name" required />
+          </label>
+        </div>
         <label>
-          <span>Your name</span>
-          <input name="name" autocomplete="name" required />
+          <span>How many people answer calls?</span>
+          <select name="size" required>
+            <option value="" disabled selected>
+              Choose one
+            </option>
+            <option>1 to 10</option>
+            <option>11 to 50</option>
+            <option>51 to 200</option>
+            <option>More than 200</option>
+          </select>
         </label>
         <label>
-          <span>Work email</span>
-          <input name="email" type="email" autocomplete="email" required />
-        </label>
-        <label>
-          <span>How can we help?</span>
-          <textarea name="message" rows="5" required></textarea>
+          <span>How do you take calls today?</span>
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Desk phones, personal phones, a spreadsheet, something else?"
+            required
+          ></textarea>
         </label>
         <button class="btn btn-primary" type="submit">
-          Send message
+          Send request
         </button>
         <p class="status" role="status" aria-live="polite"></p>
       </form>
 
       <aside class="side reveal">
-        <h2>Other ways</h2>
+        <h2>What happens next</h2>
+        <ol>
+          <li>We read your note.</li>
+          <li>We reach out to hear how your calls work today.</li>
+          <li>If Slide fits, we talk about joining the pilot.</li>
+        </ol>
         {email ? (
           <p>
-            Email <a href={`mailto:${email}`}>{email}</a>.
+            Prefer email? Write to <a href={`mailto:${email}`}>{email}</a>.
           </p>
         ) : (
           <p>The shared inbox opens with the launch. Until then, this form is the way in.</p>
         )}
-        <p>We read everything and reply within a couple of working days.</p>
       </aside>
     </div>
   </section>
@@ -74,7 +110,13 @@ const email = import.meta.env.PUBLIC_CONTACT_EMAIL as string | undefined;
     font-size: 0.875rem;
     font-weight: 550;
   }
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
   input,
+  select,
   textarea {
     width: 100%;
     padding: 13px 14px;
@@ -88,6 +130,7 @@ const email = import.meta.env.PUBLIC_CONTACT_EMAIL as string | undefined;
       box-shadow var(--dur-fast);
   }
   input:focus,
+  select:focus,
   textarea:focus {
     outline: none;
     border-color: var(--orange);
@@ -114,6 +157,13 @@ const email = import.meta.env.PUBLIC_CONTACT_EMAIL as string | undefined;
     margin-top: 12px;
     color: var(--ink-2);
   }
+  .side ol {
+    margin: 16px 0 0;
+    padding-left: 1.25rem;
+    color: var(--ink-2);
+    display: grid;
+    gap: 8px;
+  }
   .side a {
     color: var(--ink);
     text-decoration: underline;
@@ -122,6 +172,11 @@ const email = import.meta.env.PUBLIC_CONTACT_EMAIL as string | undefined;
   }
   @media (max-width: 860px) {
     .wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 520px) {
+    .two {
       grid-template-columns: 1fr;
     }
   }
@@ -137,17 +192,28 @@ const email = import.meta.env.PUBLIC_CONTACT_EMAIL as string | undefined;
     const data = new FormData(form);
 
     if (!to) {
-      if (status)
+      // better to say nothing was sent than to pretend it was
+      if (status) {
         status.textContent =
-          "Thanks. We aren't taking messages here quite yet, but we'll be set up soon.";
+          "This form isn't connected yet, so nothing was sent. Please check back soon.";
+      }
       return;
     }
 
-    const subject = encodeURIComponent(`Slide enquiry from ${data.get('name')}`);
+    const subject = encodeURIComponent(`Early access request from ${data.get('organisation')}`);
     const body = encodeURIComponent(
-      `${data.get('message')}\n\n${data.get('name')}\n${data.get('email')}`,
+      [
+        `Organisation: ${data.get('organisation')}`,
+        `Country: ${data.get('country')}`,
+        `People answering calls: ${data.get('size')}`,
+        '',
+        String(data.get('message')),
+        '',
+        String(data.get('name')),
+        String(data.get('email')),
+      ].join('\n'),
     );
     location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    if (status) status.textContent = 'Opening your email app…';
+    if (status) status.textContent = 'Opening your email app.';
   });
 </script>

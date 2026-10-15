@@ -10,11 +10,11 @@ export const plans: Plan[] = [
   {
     name: 'Starter',
     line: 'For a small team getting off personal phones.',
-    points: ['Browser softphone', 'One queue', 'Call history'],
+    points: ['Built-in softphone', 'One queue', 'Call history'],
   },
   {
     name: 'Team',
-    line: 'For teams that need real routing and reporting.',
+    line: 'For teams that need routing and reporting.',
     points: [
       'Everything in Starter',
       'Multiple queues and routing',
@@ -25,14 +25,14 @@ export const plans: Plan[] = [
   },
   {
     name: 'Business',
-    line: 'For larger floors with tighter requirements.',
+    line: 'For larger floors with stricter requirements.',
     points: ['Everything in Team', 'Roles and audit log', 'SSO', 'Priority support'],
   },
 ];
 
 export const comparison: { feature: string; starter: boolean; team: boolean; business: boolean }[] =
   [
-    { feature: 'Browser softphone', starter: true, team: true, business: true },
+    { feature: 'Built-in softphone', starter: true, team: true, business: true },
     { feature: 'Call history and search', starter: true, team: true, business: true },
     { feature: 'Multiple queues', starter: false, team: true, business: true },
     { feature: 'Routing builder', starter: false, team: true, business: true },

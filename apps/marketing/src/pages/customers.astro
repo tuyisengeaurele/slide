@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FinalCta from '../components/FinalCta.astro';
+---
+
+<Base title="Customers" description="Customer stories will live here.">
+  <PageHero
+    kicker="Customers"
+    title="Stories from teams"
+    soft="on Slide."
+    lede="This is the layout we'll use once there are real stories to tell. Nothing below is a real customer."
+  />
+
+  <section class="section">
+    <div class="container">
+      <ul class="grid">
+        {[0, 1, 2].map((i) => (
+          <li class="reveal" style={`--i: ${i}`}>
+            <span class="tag">Placeholder</span>
+            <div class="logo"></div>
+            <div class="line a"></div>
+            <div class="line b"></div>
+            <div class="line c"></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <FinalCta />
+</Base>
+
+<style>
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  li {
+    position: relative;
+    padding: 28px;
+    min-height: 300px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 2px 8px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .logo {
+    width: 96px;
+    height: 28px;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    margin-bottom: 56px;
+  }
+  .line {
+    height: 12px;
+    margin-top: 14px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--ink) 7%, transparent);
+  }
+  .a {
+    width: 92%;
+  }
+  .b {
+    width: 78%;
+  }
+  .c {
+    width: 54%;
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    li {
+      min-height: 0;
+    }
+  }
+</style>

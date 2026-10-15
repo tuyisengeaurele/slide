@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const topics = [
+  { t: 'Getting started', b: 'Create an account, add a number, invite your team.' },
+  { t: 'For agents', b: 'Taking calls, notes, outcomes and the softphone.' },
+  { t: 'For supervisors', b: 'Reading the live floor and reviewing calls.' },
+  { t: 'Routing and numbers', b: 'Hours, queues, skills and overflow.' },
+  { t: 'Admin and billing', b: 'Roles, security settings and your plan.' },
+  { t: 'API and integrations', b: 'Connect Slide to your CRM or helpdesk.' },
+];
+---
+
+<Base title="Help and docs" description="Guides for getting started with Slide.">
+  <PageHero
+    kicker="Help and docs"
+    title="Answers, when you"
+    soft="need them."
+    lede="The guides are being written alongside the product. These are the sections they'll live in."
+  />
+
+  <section class="section">
+    <div class="container">
+      <ul class="grid">
+        {topics.map((t, i) => (
+          <li class="reveal" style={`--i: ${i % 3}`}>
+            <h2>{t.t}</h2>
+            <p>{t.b}</p>
+            <span class="soon">Coming soon</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px;
+    min-height: 200px;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  h2 {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  p {
+    color: var(--ink-2);
+    font-size: 0.9375rem;
+  }
+  .soon {
+    margin-top: auto;
+    align-self: flex-start;
+    padding: 2px 8px;
+    border: 1px dashed var(--line-strong);
+    border-radius: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  @media (max-width: 960px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 620px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    li {
+      min-height: 0;
+    }
+  }
+</style>

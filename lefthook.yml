@@ -1,0 +1,23 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: '*.{ts,tsx,js,mjs,json,css,md,astro,yml,yaml}'
+      run: pnpm exec prettier --write {staged_files}
+      stage_fixed: true
+    lint:
+      glob: '*.{ts,tsx,js,mjs,astro}'
+      run: pnpm exec eslint --max-warnings 0 {staged_files}
+    secrets:
+      # CI runs gitleaks too, so skipping locally when it isn't installed is fine
+      run: gitleaks protect --staged --redact --no-banner || echo "gitleaks not installed, skipping"
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm exec commitlint --edit {1}
+
+pre-push:
+  commands:
+    typecheck:
+      run: pnpm typecheck

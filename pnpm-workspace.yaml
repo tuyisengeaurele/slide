@@ -1,0 +1,7 @@
+packages:
+  - apps/*
+  - packages/*
+
+# pnpm blocks install scripts unless they're listed here
+allowBuilds:
+  lefthook: true

@@ -35,7 +35,7 @@ Other scripts: `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm build`.
 
 Branch off `main` as `type/short-description` (for example `feat/pricing-page`), keep
 commits small and use [Conventional Commits](https://www.conventionalcommits.org/).
-Open a PR, wait for CI, squash-merge. More in [CONTRIBUTING.md](CONTRIBUTING.md) once it lands.
+Open a PR, wait for CI, squash-merge. The details are in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

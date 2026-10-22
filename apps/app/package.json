@@ -12,8 +12,8 @@
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",
     "@slide/ui": "workspace:*",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",

@@ -24,7 +24,7 @@
     "@radix-ui/react-tooltip": "^1.4.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "motion": "^14.2.0",
+    "motion": "^14.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
